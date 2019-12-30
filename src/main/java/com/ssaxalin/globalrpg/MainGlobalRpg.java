@@ -2,6 +2,7 @@ package com.ssaxalin.globalrpg;
 
 import com.ssaxalin.globalrpg.blocks.MagnetiteBlock;
 import com.ssaxalin.globalrpg.blocks.ModBlocks;
+import com.ssaxalin.globalrpg.items.magnetiteingot;
 import com.ssaxalin.globalrpg.setup.ClientProxy;
 import com.ssaxalin.globalrpg.setup.IProxy;
 import com.ssaxalin.globalrpg.setup.ModSetup;
@@ -50,6 +51,7 @@ public class MainGlobalRpg {
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.Magnetite, properties).setRegistryName("magnetite"));
+            blockRegistryEvent.getRegistry().register(new magnetiteingot());
         }
     }
 }

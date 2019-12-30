@@ -1,5 +1,6 @@
 {
-  "block.globalrpg.magnetite": "Magnetite",
+  "item.globalrpg.magnetiteingot": "Magnetite",
+  "block.globalrpg.magnetite": "Magnetite ore",
   "_comment": "Creative Tabs",
   "itemGroup.globalrpg": "Global Rpg"
 
