@@ -1,4 +1,7 @@
 {
-  "block.globalrpg.magnetite": "Magnetite"
+  "block.globalrpg.magnetite": "Magnetite",
+  "_comment": "Creative Tabs",
+  "itemGroup.globalrpg": "Global Rpg"
+
 
 }

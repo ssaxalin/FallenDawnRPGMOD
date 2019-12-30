@@ -1,3 +1,5 @@
 {
-  "block.globalrpg.magnetite": "Магнетит"
+  "block.globalrpg.magnetite": "Магнетит",
+  "_comment": "Creative Tabs",
+  "itemGroup.globalrpg": "Глобальный рпг мод"
 }
