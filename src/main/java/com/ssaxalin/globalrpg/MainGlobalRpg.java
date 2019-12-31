@@ -43,21 +43,18 @@ public class MainGlobalRpg {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent)
         {
-            // register a new block here
+            // новые блоки руды
             blockRegistryEvent.getRegistry().register(new MagnetiteBlock());
             blockRegistryEvent.getRegistry().register(new titan());
         }
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> blockRegistryEvent)
         {
-            //Руды
+            //регестрация предметов
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.Magnetite, properties).setRegistryName("magnetite"));
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.titan,properties).setRegistryName("titan"));
-
-
-            //слитки
             blockRegistryEvent.getRegistry().register(new magnetiteingot());
             blockRegistryEvent.getRegistry().register(new titaningot());
         }

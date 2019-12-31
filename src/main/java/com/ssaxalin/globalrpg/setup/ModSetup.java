@@ -8,8 +8,9 @@ public class ModSetup {
     public ItemGroup itemGroup = new ItemGroup("globalrpg") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ModBlocks.Magnetite);
+            return new ItemStack(ModBlocks.titan);
         }
+
     };
 public static void init(){}
 }
