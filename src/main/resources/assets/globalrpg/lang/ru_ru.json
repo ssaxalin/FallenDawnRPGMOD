@@ -2,8 +2,12 @@
 
   "item.globalrpg.magnetiteingot": "Магнетит",
   "item.globalrpg.titaningot": "Титан",
+
+
   "block.globalrpg.magnetite": "Магнетитовая руда",
   "block.globalrpg.titan": "Титановая руда",
+  "block.globalrpg.separator": "Сепаратор",
+
   "_comment": "Creative Tabs",
   "itemGroup.globalrpg": "Global RPG"
 }
