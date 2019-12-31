@@ -7,4 +7,6 @@ public class ModBlocks {
     public static MagnetiteBlock Magnetite;
     @ObjectHolder("globalrpg:titan")
     public static titan titan;
+    @ObjectHolder("globalrpg:separator")
+    public static separator separator;
 }

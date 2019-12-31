@@ -2,6 +2,7 @@ package com.ssaxalin.globalrpg;
 
 import com.ssaxalin.globalrpg.blocks.MagnetiteBlock;
 import com.ssaxalin.globalrpg.blocks.ModBlocks;
+import com.ssaxalin.globalrpg.blocks.separator;
 import com.ssaxalin.globalrpg.blocks.titan;
 import com.ssaxalin.globalrpg.items.magnetiteingot;
 import com.ssaxalin.globalrpg.items.titaningot;
@@ -43,9 +44,10 @@ public class MainGlobalRpg {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent)
         {
-            // новые блоки руды
+            //new blocks
             blockRegistryEvent.getRegistry().register(new MagnetiteBlock());
             blockRegistryEvent.getRegistry().register(new titan());
+            blockRegistryEvent.getRegistry().register(new separator());
         }
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> blockRegistryEvent)
@@ -53,10 +55,17 @@ public class MainGlobalRpg {
             //регестрация предметов
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
+            //ore
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.Magnetite, properties).setRegistryName("magnetite"));
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.titan,properties).setRegistryName("titan"));
+
+            //furnace for all items
+            blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.separator,properties).setRegistryName("separator"));
+
+            //ingot
             blockRegistryEvent.getRegistry().register(new magnetiteingot());
             blockRegistryEvent.getRegistry().register(new titaningot());
+
         }
     }
 }

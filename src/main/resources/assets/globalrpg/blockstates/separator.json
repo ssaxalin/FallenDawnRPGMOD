@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": {"model":"globalrpg:block/separator"},
+    "facing=south": {"model":"globalrpg:block/separator", "y":180},
+    "facing=west": {"model":"globalrpg:block/separator","y": 270},
+    "facing=east": {"model":"globalrpg:block/separator","y": 90},
+    "facing=up": {"model":"globalrpg:block/separator","x": -90},
+    "facing=down": {"model":"globalrpg:block/separator","x": 90}
+  }
+}
