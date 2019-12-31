@@ -2,7 +2,9 @@ package com.ssaxalin.globalrpg;
 
 import com.ssaxalin.globalrpg.blocks.MagnetiteBlock;
 import com.ssaxalin.globalrpg.blocks.ModBlocks;
+import com.ssaxalin.globalrpg.blocks.titan;
 import com.ssaxalin.globalrpg.items.magnetiteingot;
+import com.ssaxalin.globalrpg.items.titaningot;
 import com.ssaxalin.globalrpg.setup.ClientProxy;
 import com.ssaxalin.globalrpg.setup.IProxy;
 import com.ssaxalin.globalrpg.setup.ModSetup;
@@ -43,15 +45,21 @@ public class MainGlobalRpg {
         {
             // register a new block here
             blockRegistryEvent.getRegistry().register(new MagnetiteBlock());
+            blockRegistryEvent.getRegistry().register(new titan());
         }
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> blockRegistryEvent)
         {
-            // register a new items here
+            //Руды
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
             blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.Magnetite, properties).setRegistryName("magnetite"));
+            blockRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.titan,properties).setRegistryName("titan"));
+
+
+            //слитки
             blockRegistryEvent.getRegistry().register(new magnetiteingot());
+            blockRegistryEvent.getRegistry().register(new titaningot());
         }
     }
 }

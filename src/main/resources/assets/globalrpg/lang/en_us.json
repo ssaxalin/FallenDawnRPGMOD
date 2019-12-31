@@ -1,6 +1,8 @@
 {
   "item.globalrpg.magnetiteingot": "Magnetite",
+  "item.globalrpg.titaningot": "Titan",
   "block.globalrpg.magnetite": "Magnetite ore",
+  "block.globalrpg.titan": "Titan ore",
   "_comment": "Creative Tabs",
   "itemGroup.globalrpg": "Global Rpg"
 
