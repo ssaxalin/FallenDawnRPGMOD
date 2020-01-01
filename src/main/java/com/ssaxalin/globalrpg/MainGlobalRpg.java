@@ -1,9 +1,6 @@
 package com.ssaxalin.globalrpg;
 
-import com.ssaxalin.globalrpg.blocks.MagnetiteBlock;
-import com.ssaxalin.globalrpg.blocks.ModBlocks;
-import com.ssaxalin.globalrpg.blocks.separator;
-import com.ssaxalin.globalrpg.blocks.titan;
+import com.ssaxalin.globalrpg.blocks.*;
 import com.ssaxalin.globalrpg.items.magnetiteingot;
 import com.ssaxalin.globalrpg.items.titaningot;
 import com.ssaxalin.globalrpg.setup.ClientProxy;
@@ -13,6 +10,7 @@ import com.ssaxalin.globalrpg.setup.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -66,6 +64,11 @@ public class MainGlobalRpg {
             blockRegistryEvent.getRegistry().register(new magnetiteingot());
             blockRegistryEvent.getRegistry().register(new titaningot());
 
+        }
+        @SubscribeEvent
+        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event)
+        {
+            event.getRegistry().register(TileEntityType.Builder.create(Tile::new, ModBlocks.separator).build(null).setRegistryName("separator"));
         }
     }
 }
