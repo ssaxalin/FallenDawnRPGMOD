@@ -1,0 +1,17 @@
+{
+
+
+  "item.main.magnetite_ingot": "Magnetite",
+  "item.main.titan_ingot": "Titan ingot",
+  "item.main.mantid_ingot": "Mantid ingot",
+
+
+
+  "block.main.magnetite_ore": "Magnetite Ore",
+
+
+
+  "_comment": "Creative Tabs",
+  "itemGroup.main": "Fallen Dawn RPG"
+
+}

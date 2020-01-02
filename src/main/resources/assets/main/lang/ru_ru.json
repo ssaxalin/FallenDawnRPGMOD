@@ -1,0 +1,14 @@
+{
+
+  "item.main.magnetite_ingot": "Магнетит",
+  "item.main.titan_ingot": "Титановый слиток",
+  "item.main.mantid_ingot": "Мантидовый слиток",
+
+
+  "block.main.magnetite_ore": "Магнетитовая руда",
+
+
+  "_comment": "Creative Tabs",
+  "itemGroup.main": "Fallen Dawn RPG"
+
+}
