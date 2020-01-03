@@ -24,14 +24,19 @@ public final class ModEventSubscriber {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.MODID + " Mod Event Subscriber");
 
+    //Blocks, ores
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().registerAll(
                 setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "magnetite_ore")
         );
+        event.getRegistry().registerAll(
+                setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "titan_ore")
+        );
     }
 
+    //All Items
     @SubscribeEvent
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
@@ -59,6 +64,7 @@ public final class ModEventSubscriber {
         LOGGER.debug("Registered Items");
     }
 
+    //For TileEntity
     @SubscribeEvent
     public static void onRegisterTileEntityTypes(@Nonnull final RegistryEvent.Register<TileEntityType<?>> event) {
         // Register your TileEntityTypes here if you have them

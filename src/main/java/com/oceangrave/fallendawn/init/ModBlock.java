@@ -9,4 +9,5 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModBlock {
 
     public static final Block magnetite_ore = ModUtil._null();
+    public static final Block titan_ore = ModUtil._null();
 }
