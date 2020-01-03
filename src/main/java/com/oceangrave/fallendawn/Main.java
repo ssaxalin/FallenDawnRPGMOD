@@ -1,6 +1,6 @@
 package com.oceangrave.fallendawn;
 
-import com.oceangrave.fallendawn.init.ModBlock;
+import com.oceangrave.fallendawn.init.ModBlocks;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,7 +22,7 @@ public final class Main {
     private void setup(final FMLCommonSetupEvent event)
     {
         //fill ~ ~ ~ ~10 ~-30 ~10 air
-        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlock.magnetite_ore.getDefaultState(),4,8,0,0,32);
-        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlock.titan_ore.getDefaultState(),2,4,0,0,20);
+        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.magnetite_ore.getDefaultState(),4,8,0,0,32);
+        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.titan_ore.getDefaultState(),2,4,0,0,20);
     }
 }

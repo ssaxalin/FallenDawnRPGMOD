@@ -1,7 +1,10 @@
 package com.oceangrave.fallendawn;
 
 import com.google.common.base.Preconditions;
+import com.oceangrave.fallendawn.block.SeparatorBlock;
+import com.oceangrave.fallendawn.init.ModBlocks;
 import com.oceangrave.fallendawn.init.ModItemGroup;
+import com.oceangrave.fallendawn.tileentity.SeparatorTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -34,6 +37,9 @@ public final class ModEventSubscriber {
         event.getRegistry().registerAll(
                 setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "titan_ore")
         );
+        event.getRegistry().registerAll(
+                setup(new SeparatorBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F, 3.5F)), "separator")
+        );
     }
 
     //All Items
@@ -63,15 +69,18 @@ public final class ModEventSubscriber {
                 });
         LOGGER.debug("Registered Items");
     }
-
-    //For TileEntity
     @SubscribeEvent
     public static void onRegisterTileEntityTypes(@Nonnull final RegistryEvent.Register<TileEntityType<?>> event) {
         // Register your TileEntityTypes here if you have them
         event.getRegistry().registerAll(
+                // We don't have a datafixer for our TileEntity, so we pass null into build
+                setup(TileEntityType.Builder.create(SeparatorTileEntity::new, ModBlocks.separator).build(null), "separator")
         );
         LOGGER.debug("Registered TileEntityTypes");
     }
+
+    //For TileEntity
+
 
     @Nonnull
     private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {

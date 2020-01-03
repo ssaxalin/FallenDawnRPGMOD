@@ -6,8 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraftforge.registries.ObjectHolder;
 
 @ObjectHolder(Main.MODID)
-public class ModBlock {
+public class ModBlocks {
 
     public static final Block magnetite_ore = ModUtil._null();
     public static final Block titan_ore = ModUtil._null();
+    public static final Block separator = null;
 }
