@@ -1,0 +1,13 @@
+{
+	"parent": "block/cube" ,
+	"textures":
+	{
+		"particle": "main:block/separator",
+		"down": "main:block/separator",
+		"up": "main:block/separator",
+		"east": "main:block/separator",
+		"west": "main:block/separator",
+		"north": "main:block/separator_front",
+		"south": "main:block/separator"
+	}
+}

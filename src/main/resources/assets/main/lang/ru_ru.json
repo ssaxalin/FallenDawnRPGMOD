@@ -7,7 +7,7 @@
 
   "block.main.magnetite_ore": "Магнетитовая руда",
   "block.main.titan_ore": "Титановая руда",
-  "block.main.separator": "Сепаратор",
+    "block.main.mod_furnace": "Сепаратор",
 
 
   "_comment": "Creative Tabs",

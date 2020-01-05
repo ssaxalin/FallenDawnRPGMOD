@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"facing=north,burning=false":	{ "model": "main:block/mod_furnace" },
+		"facing=south,burning=false":	{ "model": "main:block/mod_furnace", "y": 180 },
+		"facing=west,burning=false":	{ "model": "main:block/mod_furnace", "y": 270 },
+		"facing=east,burning=false":	{ "model": "main:block/mod_furnace", "y": 90 },
+		"facing=north,burning=true":	{ "model": "main:block/mod_furnace" },
+		"facing=south,burning=true":	{ "model": "main:block/mod_furnace", "y": 180 },
+		"facing=west,burning=true":		{ "model": "main:block/mod_furnace", "y": 270 },
+		"facing=east,burning=true":		{ "model": "main:block/mod_furnace", "y": 90 }
+	}
+}

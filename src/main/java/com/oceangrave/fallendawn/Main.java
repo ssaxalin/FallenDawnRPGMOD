@@ -1,8 +1,11 @@
 package com.oceangrave.fallendawn;
 
+import com.oceangrave.fallendawn.config.ConfigHolder;
 import com.oceangrave.fallendawn.init.ModBlocks;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +21,10 @@ public final class Main {
     public Main() {
         LOGGER.debug("Hello from Example Mod!");
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        final ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        // Register Configs
+        modLoadingContext.registerConfig(ModConfig.Type.CLIENT, ConfigHolder.CLIENT_SPEC);
+        modLoadingContext.registerConfig(ModConfig.Type.SERVER, ConfigHolder.SERVER_SPEC);
     }
     private void setup(final FMLCommonSetupEvent event)
     {

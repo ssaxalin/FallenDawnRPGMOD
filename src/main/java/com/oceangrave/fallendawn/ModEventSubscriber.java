@@ -1,19 +1,25 @@
 package com.oceangrave.fallendawn;
 
 import com.google.common.base.Preconditions;
-import com.oceangrave.fallendawn.block.SeparatorBlock;
+import com.oceangrave.fallendawn.block.ModFurnaceBlock;
+import com.oceangrave.fallendawn.config.ConfigHelper;
+import com.oceangrave.fallendawn.config.ConfigHolder;
+import com.oceangrave.fallendawn.container.ModFurnaceContainer;
 import com.oceangrave.fallendawn.init.ModBlocks;
 import com.oceangrave.fallendawn.init.ModItemGroup;
-import com.oceangrave.fallendawn.tileentity.SeparatorTileEntity;
+import com.oceangrave.fallendawn.tileentity.ModFurnaceTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -32,14 +38,10 @@ public final class ModEventSubscriber {
     public static void onRegisterBlock(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().registerAll(
-                setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "magnetite_ore")
-        );
-        event.getRegistry().registerAll(
-                setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "titan_ore")
-        );
-        event.getRegistry().registerAll(
-                setup(new SeparatorBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F, 3.5F)), "separator")
-        );
+                setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "magnetite_ore"),
+                setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "titan_ore"),
+
+                setup(new ModFurnaceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F).lightValue(13)), "mod_furnace"));
     }
 
     //All Items
@@ -47,40 +49,48 @@ public final class ModEventSubscriber {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
         event.getRegistry().registerAll(
-                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "magnetite_ingot")
-
-        );
-        event.getRegistry().registerAll(
-                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "titan_ingot")
-        );
-        event.getRegistry().registerAll(
+                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "magnetite_ingot"),
+                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "titan_ingot"),
                 setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "mantid_ingot")
         );
-        ForgeRegistries.BLOCKS.getValues().parallelStream()
+        ForgeRegistries.BLOCKS.getValues().stream()
                 .filter(block -> block.getRegistryName().getNamespace().equals(Main.MODID))
-                // Register the BlockItem for the block
                 .forEach(block -> {
-                    // Make the properties, and make it so that the item will be on our ItemGroup (CreativeTab)
                     final Item.Properties properties = new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP);
-                    // Create the new BlockItem with the block and it's properties
                     final BlockItem blockItem = new BlockItem(block, properties);
-                    // Setup the new BlockItem with the block's registry name and register it
                     registry.register(setup(blockItem, block.getRegistryName()));
                 });
         LOGGER.debug("Registered Items");
     }
     @SubscribeEvent
     public static void onRegisterTileEntityTypes(@Nonnull final RegistryEvent.Register<TileEntityType<?>> event) {
-        // Register your TileEntityTypes here if you have them
         event.getRegistry().registerAll(
-                // We don't have a datafixer for our TileEntity, so we pass null into build
-                setup(TileEntityType.Builder.create(SeparatorTileEntity::new, ModBlocks.separator).build(null), "separator")
+                setup(TileEntityType.Builder.create(ModFurnaceTileEntity::new, ModBlocks.MOD_FURNACE).build(null), "mod_furnace")
         );
         LOGGER.debug("Registered TileEntityTypes");
     }
 
     //For TileEntity
+    @SubscribeEvent
+    public static void onRegisterContainerTypes(@Nonnull final RegistryEvent.Register<ContainerType<?>> event) {
+        event.getRegistry().registerAll(
+                setup(IForgeContainerType.create(ModFurnaceContainer::new), "mod_furnace")
+        );
+        LOGGER.debug("Registered ContainerTypes");
+    }
 
+
+    @SubscribeEvent
+    public static void onModConfigEvent(final ModConfig.ModConfigEvent event) {
+        final ModConfig config = event.getConfig();
+        if (config.getSpec() == ConfigHolder.CLIENT_SPEC) {
+            ConfigHelper.bakeClient(config);
+            LOGGER.debug("Baked client config");
+        } else if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
+            ConfigHelper.bakeServer(config);
+            LOGGER.debug("Baked server config");
+        }
+    }
 
     @Nonnull
     private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
