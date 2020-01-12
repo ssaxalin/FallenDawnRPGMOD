@@ -205,7 +205,7 @@ public class ModFurnaceTileEntity extends TileEntity implements ITickableTileEnt
 				.shortValue();
 	}
 
-
+	
 	private boolean burnFuel() {
 		final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT);
 		if (!fuelStack.isEmpty()) {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "main:block/fear_grass" },
+      { "model": "main:block/fear_grass", "y": 90 },
+      { "model": "main:block/fear_grass", "y": 180 },
+      { "model": "main:block/fear_grass", "y": 270 }
+    ]
+  }
+}

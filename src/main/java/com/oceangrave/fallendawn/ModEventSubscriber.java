@@ -2,24 +2,24 @@ package com.oceangrave.fallendawn;
 
 import com.google.common.base.Preconditions;
 import com.oceangrave.fallendawn.block.ModFurnaceBlock;
-import com.oceangrave.fallendawn.config.ConfigHelper;
-import com.oceangrave.fallendawn.config.ConfigHolder;
 import com.oceangrave.fallendawn.container.ModFurnaceContainer;
 import com.oceangrave.fallendawn.init.ModBlocks;
 import com.oceangrave.fallendawn.init.ModItemGroup;
+import com.oceangrave.fallendawn.init.ToolMaterialList;
+import com.oceangrave.fallendawn.item.TitanAxe;
+import com.oceangrave.fallendawn.item.TitanSword;
 import com.oceangrave.fallendawn.tileentity.ModFurnaceTileEntity;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -32,15 +32,15 @@ import javax.annotation.Nonnull;
 public final class ModEventSubscriber {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.MODID + " Mod Event Subscriber");
-
     //Blocks, ores
     @SubscribeEvent
     public static void onRegisterBlock(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().registerAll(
+                setup(new Block(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)), "fear_grass"),
+                setup(new Block(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)), "fear_dirt"),
                 setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "magnetite_ore"),
                 setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 4.0F)), "titan_ore"),
-
                 setup(new ModFurnaceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F).lightValue(13)), "mod_furnace"));
     }
 
@@ -51,7 +51,9 @@ public final class ModEventSubscriber {
         event.getRegistry().registerAll(
                 setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "magnetite_ingot"),
                 setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "titan_ingot"),
-                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "mantid_ingot")
+                setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "mantid_ingot"),
+                setup(new TitanAxe(ToolMaterialList.titanmaterialaxe, -4.0F, -2.5F,  new TitanAxe.Properties().group(ModItemGroup.MOD_ITEM_GROUP)),"titan_axe"),
+                setup(new TitanSword(ToolMaterialList.titanmaterialsword, 1, 1, -3.3F,  new TitanSword.Properties().group(ModItemGroup.MOD_ITEM_GROUP)),"titan_sword")
         );
         ForgeRegistries.BLOCKS.getValues().stream()
                 .filter(block -> block.getRegistryName().getNamespace().equals(Main.MODID))
@@ -70,6 +72,8 @@ public final class ModEventSubscriber {
         LOGGER.debug("Registered TileEntityTypes");
     }
 
+
+
     //For TileEntity
     @SubscribeEvent
     public static void onRegisterContainerTypes(@Nonnull final RegistryEvent.Register<ContainerType<?>> event) {
@@ -80,17 +84,7 @@ public final class ModEventSubscriber {
     }
 
 
-    @SubscribeEvent
-    public static void onModConfigEvent(final ModConfig.ModConfigEvent event) {
-        final ModConfig config = event.getConfig();
-        if (config.getSpec() == ConfigHolder.CLIENT_SPEC) {
-            ConfigHelper.bakeClient(config);
-            LOGGER.debug("Baked client config");
-        } else if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
-            ConfigHelper.bakeServer(config);
-            LOGGER.debug("Baked server config");
-        }
-    }
+
 
     @Nonnull
     private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {

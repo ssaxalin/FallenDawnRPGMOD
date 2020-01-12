@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "main:block/fear_grass_path" },
+      { "model": "main:block/fear_grass_path", "y": 90 },
+      { "model": "main:block/fear_grass_path", "y": 180 },
+      { "model": "main:block/fear_grass_path", "y": 270 }
+    ]
+  }
+}

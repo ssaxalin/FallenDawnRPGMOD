@@ -10,4 +10,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModTileEntityTypes {
 
     public static final TileEntityType<ModFurnaceTileEntity> MOD_FURNACE = ModUtil._null() ;
+
+    public class CustomBlockTileEntity {
+    }
 }

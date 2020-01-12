@@ -30,6 +30,6 @@ public final class Main {
     {
         //fill ~ ~ ~ ~10 ~-30 ~10 air
         ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.magnetite_ore.getDefaultState(),4,8,0,0,32);
-        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.titan_ore.getDefaultState(),2,4,0,0,20);
+        ModOreGen.generateOre(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.titan_ore.getDefaultState(),2,4,0,0,18);
     }
 }
