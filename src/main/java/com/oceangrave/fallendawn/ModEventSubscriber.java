@@ -53,7 +53,7 @@ public final class ModEventSubscriber {
                 setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "titan_ingot"),
                 setup(new Item(new Item.Properties().group(ModItemGroup.MOD_ITEM_GROUP)), "mantid_ingot"),
                 setup(new TitanAxe(ToolMaterialList.titanmaterialaxe, -4.0F, -2.5F,  new TitanAxe.Properties().group(ModItemGroup.MOD_ITEM_GROUP)),"titan_axe"),
-                setup(new TitanSword(ToolMaterialList.titanmaterialsword, 1, 1, -3.3F,  new TitanSword.Properties().group(ModItemGroup.MOD_ITEM_GROUP)),"titan_sword")
+                setup(new TitanSword(ToolMaterialList.titanmaterialsword, 3, 3, -2.0F,  new TitanSword.Properties().group(ModItemGroup.MOD_ITEM_GROUP)),"titan_sword")
         );
         ForgeRegistries.BLOCKS.getValues().stream()
                 .filter(block -> block.getRegistryName().getNamespace().equals(Main.MODID))
